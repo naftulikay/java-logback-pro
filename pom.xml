@@ -12,6 +12,10 @@
   <name>Java Logback Pro</name>
   <url>http://www.github.com/naftulikay/java-logback-pro</url>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <!-- Logging Dependencies -->
     <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->

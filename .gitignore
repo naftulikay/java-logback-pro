@@ -1,3 +1,5 @@
 /.ansible-roles
 /.vagrant
 /target
+
+/dependency-reduced-pom.xml

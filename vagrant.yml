@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - role: vagrant-base
+  tasks:
+    - name: install java dependencies
+      package: name={{ item }} state=present
+      with_items:
+        - java-1.8.0-openjdk-headless
+        - java-1.8.0-openjdk-devel
+        - maven

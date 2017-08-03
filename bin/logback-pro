@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DEPLOY_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
+
+JOLOKIA_PORT="7777"
+JOLOKIA_INTERFACE="127.0.0.1"
+JOLOKIA_VERSION="1.3.7"
+
+
+function main() {
+  cd $DEPLOY_HOME
+  # handoff to jvm
+  exec java -javaagent:"lib/jolokia-jvm-${JOLOKIA_VERSION}-agent.jar"=host="$JOLOKIA_INTERFACE",port="$JOLOKIA_PORT" \
+    -cp 'conf:lib/*' wtf.naftuli.logbackpro.LogbackPro $@
+}
+
+if [[ "${BASH_SOURCE}" == "$0" ]]; then
+  main $@
+fi

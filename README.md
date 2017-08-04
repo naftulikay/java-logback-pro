@@ -7,15 +7,25 @@ configuration, and JMX over HTTP via Jolokia in order to expose runtime tweaking
 
 ## Running
 
-To build and run the JAR:
+To build a distribution:
 
 ```
 $ mvn -DskipTests package
-$ DEPLOY_ENVIRONMENT=dev LOG_FORMAT=plain \
-    java -jar target/logback-pro-0.1.0.jar
 ```
 
-It will simply log at every level in a while loop forever.
+Next, unzip, untar, or change into the `target/logback-pro-${VERSION}-dist/logback-pro-${VERSION}` directory.
+
+Finally, start the service via the supplied shell script:
+
+```
+$ LOG_FORMAT=json bin/logback-pro
+{"@timestamp":"2017-08-04T15:30:33.325+00:00","@version":1,"message":"A debug statement.","logger_name":"wtf.naftuli.logbackpro.LogbackPro","thread_name":"main","level":"DEBUG","level_value":10000}
+{"@timestamp":"2017-08-04T15:30:33.332+00:00","@version":1,"message":"An info statement.","logger_name":"wtf.naftuli.logbackpro.LogbackPro","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2017-08-04T15:30:33.333+00:00","@version":1,"message":"A warning.","logger_name":"wtf.naftuli.logbackpro.LogbackPro","thread_name":"main","level":"WARN","level_value":30000}
+{"@timestamp":"2017-08-04T15:30:33.333+00:00","@version":1,"message":"An error.","logger_name":"wtf.naftuli.logbackpro.LogbackPro","thread_name":"main","level":"ERROR","level_value":40000}
+```
+
+It will simply attempt to log at every level in a while loop forever.
 
 ## Environment Variables
 
@@ -30,6 +40,8 @@ As seen in `src/main/resources/logback.groovy`, the logging configuration respec
   <dt><code>LOG_FORMAT</code></dt>
   <dd>Either <code>plain</code> or <code>json</code> for different output types.</dd>
 </dl>
+
+Set these environment variables when invoking the script and they will
 
 ## License
 
